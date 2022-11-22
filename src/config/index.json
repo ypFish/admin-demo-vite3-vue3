@@ -1,0 +1,8 @@
+{
+	"page": {
+		"title": "ADMIN_DEMO",
+		"desc": "管理后台模板，采用技术栈包括：vite3+vue3.2+ts+mock+eslint+prettier+stylus+vue-router4",
+		"keywords": "admin,vite3,vue3.2,ts,mock,eslint,prettier,stylus,vue-router4",
+		"icon": "//fes.qyerstatic.com/FgVfajjovkLei3Q8PZUWW_LKCrtK"
+	}
+}

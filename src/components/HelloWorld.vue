@@ -1,58 +1,75 @@
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">数量 {{ count }}</button>
-    <p>{{ userName }}</p>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
+	<h1>{{ msg }}</h1>
+	<div class="card">
+		<!-- <button type="button" @click="count++">数量 {{ count }}</button> -->
+		<p>count:{{ indexStore.count }}</p>
+		<p>count:{{ count }}</p>
+		<p>两倍count:{{ indexStore.doubleCount }}</p>
+		<button @click="addStoreCount">增加全局count</button>
+		<div class="box">
+			<p>{{ userName }}</p>
+		</div>
+	</div>
 </template>
-
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue';
+import { useIndexStore } from '@/store/index';
+import { storeToRefs } from 'pinia';
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(50)
+// const count = ref(50);
 
-const userName = ref('')
+const userName = ref('');
+
+const indexStore = useIndexStore();
+
+const { count } = storeToRefs(useIndexStore());
+
+const addStoreCount = () => {
+	indexStore.changeState();
+};
 
 /**
  * @description: 定义获取用户数据接口
  * @return {*}
  */
 interface GetUser {
-  (): void
+	(): void;
 }
 /**
  * @description: 获取用户数据
  * @return {*}
  */
 const getUser: GetUser = async () => {
-  const res = await fetch('/api/user')
-  interface UserData {
-    data: {
-      user: {
-        name: string
-        age: number
-      }
-    }
-  }
-  const userData: UserData = await res.json()
-  console.log('用户数据', userData)
-  userName.value = userData?.data?.user?.name || ''
-}
+	interface UserData {
+		data: {
+			user: {
+				name: string;
+				age: number;
+			};
+		};
+	}
+	const res = await fetch('/api/user');
+	const userData: UserData = await res.json();
+	console.log('用户数据', userData);
+	userName.value = userData?.data?.user?.name || '';
+};
 
 onMounted(() => {
-  getUser()
-})
+	getUser();
+});
 </script>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
+<style lang="stylus" scoped>
+.box
+	border 1px solid blue;
+	width 100%;
+	height 100px;
+	display flex;
+	align-items center;
+	justify-content center;
+
+  p
+	 color: #888;
 </style>
