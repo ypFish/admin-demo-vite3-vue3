@@ -39,7 +39,7 @@ const addProduct = (item: IProduct) => {
 	cartStore.addProduct(item);
 };
 </script>
-<style lang="stylus" scoped>
+<!-- <style lang="stylus" scoped>
 .product-container
     width 45%;
     height 400px;
@@ -49,4 +49,4 @@ const addProduct = (item: IProduct) => {
 
     li
         height 40px;
-</style>
+</style> -->

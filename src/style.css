@@ -180,7 +180,7 @@ a {
 a:active,
 a:focus {
   outline: none;
-  color: #8dabbb;
+  /* color: #8dabbb; */
 }
 
 input::-webkit-input-placeholder,

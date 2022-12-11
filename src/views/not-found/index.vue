@@ -4,10 +4,3 @@
 	</div>
 </template>
 <script lang="ts" setup></script>
-<style lang="stylus" scoped>
-.container
-    width 100vw;
-    position relative;
-    font-size 30px;
-    font-weight bold;
-</style>

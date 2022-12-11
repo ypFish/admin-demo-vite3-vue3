@@ -1,35 +1,20 @@
-import { createRouter, createWebHashHistory, RouteLocationNormalized } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
-//主页
-const Home = () => import('../views/home/index.vue');
-const About = () => import('../views/about/index.vue');
-const NotFound = () => import('../views/not-found/index.vue');
+import { routeList } from './route-list';
+import { routerGenerate } from './generator';
+import { createRouterGuard } from './guard';
 
 //路由表
-const routes = [
-	{
-		path: '/',
-		name: 'home',
-		component: Home,
-		props: (route: RouteLocationNormalized) => ({ age: route.query.age }),
-		// props: {
-		// 	age: 18,
-		// },
-	},
-	{
-		path: '/about',
-		name: 'about',
-		component: About,
-		props: true,
-	},
-	// 404页面配置，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
-	{ path: '/:pathMatch(.*)*', name: 'notfound', component: NotFound },
-];
+//将自定义路由表转化为vue-router识别的路由表
+export const routes: RouteRecordRaw[] = routerGenerate(routeList);
 
 //使用工厂函数创建路由实例
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes,
 });
+
+//设置路由守卫
+createRouterGuard(router);
 
 export default router;

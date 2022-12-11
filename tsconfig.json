@@ -16,7 +16,10 @@
     "paths": {
       "@/*":["src/*"],
       "@comps/*":["src/components/*"],
-      "@store/*":["src/store/*"]
+      "@views/*":["src/views/*"],
+      "@store/*":["src/store/*"],
+      "@style/*":["src/style/*"],
+      "@api/*":["src/api/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

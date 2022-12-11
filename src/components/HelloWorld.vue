@@ -15,6 +15,7 @@
 import { onMounted, ref } from 'vue';
 import { useIndexStore } from '@/store/index';
 import { storeToRefs } from 'pinia';
+import { getCurrent, getUserList } from '@api/index';
 
 defineProps<{ msg: string }>();
 
@@ -56,11 +57,17 @@ const getUser: GetUser = async () => {
 	userName.value = userData?.data?.user?.name || '';
 };
 
-onMounted(() => {
+onMounted(async () => {
 	getUser();
+
+	const current = await getCurrent();
+	console.log('最终current', current);
+
+	const userList = await getUserList();
+	console.log('userList', userList);
 });
 </script>
-
+<!-- 
 <style lang="stylus" scoped>
 .box
 	border 1px solid blue;
@@ -72,4 +79,4 @@ onMounted(() => {
 
   p
 	 color: #888;
-</style>
+</style> -->

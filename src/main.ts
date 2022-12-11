@@ -6,4 +6,8 @@ import App from './App.vue';
 import router from './router/index';
 import { createPinia } from 'pinia';
 
-createApp(App).use(createPinia()).use(router).mount('#app');
+const app = createApp(App);
+
+app.use(createPinia()).use(router).mount('#app');
+
+app.config.globalProperties.$http = '全局挂载http';
